@@ -24,7 +24,7 @@ features = input.getFeatures()
 out=[]
 for f in features: 
     v=f[fieldIdx]
-    if 0.00001 <= v <= 360 and f['tip']=="En circ":  out.append(v)
+    if 0.00001 <= v <= 360 :  out.append(v)
 
 #theta = np.linspace(0.0, 2 * np.pi, N, endpoint=False)
 #radii = max_height*np.random.rand(N)
