@@ -8,7 +8,7 @@ Author: Zoran Cuckovic
 This script is used for somoothing integer based DEMs 
 (or other types of raster data with flat, continouous surfaces)
 
-more detail on: zoran-cuckovic.from.hr/2017/lissage-bdalti/
+more detail on: LandscapeArchaeology.org/2018/lissage-bdalti/
 """
 
 from osgeo import gdal, osr
