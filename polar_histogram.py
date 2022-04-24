@@ -209,9 +209,7 @@ class PolarHistogram(QgsProcessingAlgorithm):
         """
         Here is where the processing itself takes place.
         """
-        
-        check_field = 'ckeck2' #sic !
-        
+               
         data = [] # using a list, slow but it works fine...
 
         # Retrieve the feature source and sink. The 'dest_id' variable is used
@@ -264,6 +262,7 @@ class PolarHistogram(QgsProcessingAlgorithm):
         for current, feature in enumerate(features):
             # Add a feature
             v = feature[azimuth_field]
+            # Attention : only the 0 - 360 range is accepted !!
             if 0<=v<=360:  out += [v]
                 
 
