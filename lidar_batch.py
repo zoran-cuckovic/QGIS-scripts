@@ -117,7 +117,8 @@ class ExampleProcessingAlgorithm(QgsProcessingAlgorithm):
         self.addParameter(
             QgsProcessingParameterString(
                 self.CLASSIFICATION,
-                self.tr('Classes (separated by a comma , )')))
+                self.tr('Classes'),
+                '2,3,4,5,6,7'))
   
         self.addParameter(QgsProcessingParameterFile(
             self.OUTPUT_FOLDER,
@@ -185,4 +186,4 @@ class ExampleProcessingAlgorithm(QgsProcessingAlgorithm):
         # statistics, etc. These should all be included in the returned
         # dictionary, with keys matching the feature corresponding parameter
         # or output names.
-        return None#{self.OUTPUT: dest_id}
+        return {self.OUTPUT_FOLDER: None}
