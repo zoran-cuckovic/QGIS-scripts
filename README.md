@@ -2,9 +2,13 @@
 
 Random scripts that could be useful for QGIS users...
 
+## Downloading
+Look for the option "Download raw file" in the upper right corner.  
+![image](assets/download_screenshot.jpg)
+
 ## Installing QGIS scripts 
-Simply go to Processing Toolbox -> Scripts -> Tools -> Create new script and paste the code. Or use "Add from file" option (which doesn'talways work)
+Simply go to Processing Toolbox -> Scripts -> Add new script and select the file. (Or use "Crate new script" option and copy-past the code, if the first option doesn't work.)
 
-![](http://zoran-cuckovic.from.hr/images/2016/05/QGIS_processing_toolbox.png)
+![](assets/qgis_processing.jpg)
 
-[Download link](lidar_batch.py)
+
