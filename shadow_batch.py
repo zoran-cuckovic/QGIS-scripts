@@ -14,7 +14,7 @@ my_dem = 'C:/______/myfile.tif'
 output_folder = 'C:/____/shadows/' # must be existent 
 
 with open(my_table, newline='') as csvfile:
-    spamreader = csv.reader(csvfile, delimiter=';')
+    spamreader = csv.reader(csvfile, delimiter=table_delimiter)
     
     next(spamreader, None)  # skipping the header
    
