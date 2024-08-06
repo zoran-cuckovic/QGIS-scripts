@@ -20,7 +20,7 @@ with open(my_table, newline='') as csvfile:
    
     for row in spamreader:
         
-        name,azim, height = row # supposing you only have two values per row
+        name,azim, height = row # supposing you only have three values per row (!)
        
         processing.run("terrain_shading:Shadow depth", {'INPUT':my_dem,
                 'DIRECTION': int(azim),
