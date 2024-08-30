@@ -1,10 +1,4 @@
 
-"""
-Vidi takodjer https://zhiyzuo.github.io/python-modularity-maximization/
-faster : https://graph-tool.skewed.de/static/doc/demos/inference/inference.html
-integration vs segregation : https://digitalcommons.unl.edu/cgi/viewcontent.cgi?referer=https://www.google.fr/&httpsredir=1&article=1062&context=anthropologyfacpub
-"""
-
 from qgis.PyQt.QtCore import QCoreApplication, QVariant
 
 from qgis.core import ( QgsProcessing, QgsProcessingAlgorithm, 
