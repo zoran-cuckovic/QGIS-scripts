@@ -107,6 +107,7 @@ class ExAlgo(QgsProcessingAlgorithm):
         elif analysis_type == 1:
             out = nx.betweenness_centrality(G)
             field = 'betweenness'
+# TODO : Louvian community (networkx)
         elif analysis_type == 2 :
             out = community.best_partition(G)
             field = 'group'
