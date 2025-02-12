@@ -3,7 +3,7 @@
 Random scripts that could be useful for QGIS users...
 
 ## Downloading
-Look for the option "Download raw file" in the upper right corner.  
+Look for the option "Download raw file" in the upper right corner (one you've opened a script).  
 ![image](assets/download_screenshot.jpg)
 
 ## Installing QGIS scripts 
