@@ -12,7 +12,7 @@ from qgis.core import ( QgsProcessing, QgsProcessingAlgorithm,
 
 
 import networkx as nx
-import community
+
 import csv
 
 
@@ -84,7 +84,8 @@ class ExAlgo(QgsProcessingAlgorithm):
         QgsProcessingParameterFileDestination(
             self.OUTPUT,
             self.tr("Output"),
-            fileFilter = ".csv" ))
+            fileFilter = ".csv", 
+            defaultValue = ".csv"))
         # The name in fileFilter has been deduced from list of filters from execution of 
         # QgsVectorFileWriter.fileFilterString(QgsVectorFileWriter.VectorFormatOptions())
             
@@ -107,12 +108,17 @@ class ExAlgo(QgsProcessingAlgorithm):
         elif analysis_type == 1:
             out = nx.betweenness_centrality(G)
             field = 'betweenness'
-# TODO : Louvian community (networkx)
+
         elif analysis_type == 2 :
-            out = community.best_partition(G)
+            temp= nx.community.louvain_communities(G, seed=123)
             field = 'group'
+		
+            out = {} #group IDs are not given, we will have to enumerate them
+            for i, group in enumerate(temp) :
+                for  member in group:
+                    out[member]= i
             
-     
+                
         with open(output, 'w', newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter = ';')
             writer.writerow (['node',field])
