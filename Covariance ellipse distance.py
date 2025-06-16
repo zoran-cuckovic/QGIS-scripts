@@ -163,7 +163,7 @@ class CovarianceEllipse(QgsProcessingAlgorithm):
         if source is None:
             raise QgsProcessingException(self.invalidSourceError(parameters, self.INPUT))
 
-        namefieldname = self.parameterAsString(parameters, self.KEY_FIELD, context)
+        # namefieldname = self.parameterAsString(parameters, self.KEY_FIELD, context)
         distance = self.parameterAsDouble( parameters, self.DISTANCE, context)
         # TODO - not used at the moment (reduce the number of neighbours, calculate cosine similarity, etc.)
         # min_neighbours = self.parameterAsInt( parameters, self.NEIGHBOURS, context)
