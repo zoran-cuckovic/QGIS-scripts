@@ -70,14 +70,14 @@ class CovarianceEllipse(QgsProcessingAlgorithm):
         lowercase alphanumeric characters only and no spaces or other
         formatting characters.
         """
-        return 'covariance2'
+        return 'covariance_ellipse'
 
     def displayName(self):
         """
         Returns the translated algorithm name, which should be used for any
         user-visible display of the algorithm name.
         """
-        return self.tr('Covariance ellipse 2')
+        return self.tr('Covariance ellipse')
 
     def group(self):
         """
@@ -102,7 +102,7 @@ class CovarianceEllipse(QgsProcessingAlgorithm):
         should provide a basic description about what the algorithm does and the
         parameters and outputs associated with it..
         """
-        return self.tr("Example algorithm short description")
+        return self.tr("Calculates the parameters for covar. ellipse within a set of points.")
 
     def initAlgorithm(self, config=None):
         """
@@ -165,7 +165,7 @@ class CovarianceEllipse(QgsProcessingAlgorithm):
 
         namefieldname = self.parameterAsString(parameters, self.KEY_FIELD, context)
         distance = self.parameterAsDouble( parameters, self.DISTANCE, context)
-        # TODO
+        # TODO - not used at the moment (reduce the number of neighbours, calculate cosine similarity, etc.)
         # min_neighbours = self.parameterAsInt( parameters, self.NEIGHBOURS, context)
         # cosines = self.parameterAsInt( parameters, self.COSINE_SIMILARITY, context)
         # valuefieldname = self.parameterAsString(parameters, self.VALUE_FIELD, context)
