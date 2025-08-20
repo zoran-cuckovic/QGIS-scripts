@@ -16,7 +16,8 @@ from qgis.core import (QgsProcessing,
                        QgsProcessingException,
                        QgsProcessingAlgorithm,
                        QgsProcessingParameterFile,
-                       QgsProcessingParameterString, 
+                       QgsProcessingParameterString,
+                      QgsProcessingParameterBoolean, 
                        QgsProcessingParameterNumber)
 from qgis import processing
 import os
@@ -43,6 +44,7 @@ class ExampleProcessingAlgorithm(QgsProcessingAlgorithm):
     INPUT_FOLDER = 'INPUT'
     RESOLUTION = 'RESOLUTION'
     CLASSIFICATION = 'CLASSIFICATION'
+    OVERWRITE = 'OVERWRITE'
     OUTPUT_FOLDER = 'OUTPUT'
 
     def tr(self, string):
@@ -119,6 +121,12 @@ class ExampleProcessingAlgorithm(QgsProcessingAlgorithm):
                 self.CLASSIFICATION,
                 self.tr('Classes'),
                 '2,3,4,5,6'))
+                
+        self.addParameter(
+            QgsProcessingParameterBoolean(
+                self.OVERWRITE,
+                self.tr('Overwrite existing files')))
+                       
   
         self.addParameter(QgsProcessingParameterFile(
             self.OUTPUT_FOLDER,
@@ -136,6 +144,7 @@ class ExampleProcessingAlgorithm(QgsProcessingAlgorithm):
         # dictionary returned by the processAlgorithm function.
         source = self.parameterAsFile(parameters, self.INPUT_FOLDER, context)
         resolution = self.parameterAsDouble(parameters, self.RESOLUTION, context)
+        overwrite = self.parameterAsInt(parameters, self.OVERWRITE, context)
         destination =  self.parameterAsFile(parameters, self.OUTPUT_FOLDER, context)
         classification = 'Classification in ( {} )'.format(
             self.parameterAsString(parameters, self.CLASSIFICATION, context))
@@ -160,17 +169,19 @@ class ExampleProcessingAlgorithm(QgsProcessingAlgorithm):
             full_path = os.path.join(source, f)
             output_file = os.path.join(destination, 
                                     os.path.basename(f) + ".tif")
+                                    
+            if overwrite or not os.path.isfile(output_file):
+            
+                if f[-4:] in (".las" ,".laz"): 
 
-            if f[-4:] in (".las" ,".laz"): 
-
-                processing.run("pdal:exportraster", {
-                    'INPUT': full_path,
-                    'ATTRIBUTE' : 'Z',
-                    'FILTER_EXPRESSION' : classification, 
-                    'RESOLUTION' : resolution,
-                    'OUTPUT': output_file 
-                })
-                print ("Converted file: " +f)
+                    processing.run("pdal:exportraster", {
+                        'INPUT': full_path,
+                        'ATTRIBUTE' : 'Z',
+                        'FILTER_EXPRESSION' : classification, 
+                        'RESOLUTION' : resolution,
+                        'OUTPUT': output_file 
+                    })
+                    print ("Converted file: " +f)
                 
             else : print ("Skipped file: " + f) 
             
